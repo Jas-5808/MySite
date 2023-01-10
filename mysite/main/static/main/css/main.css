@@ -1,0 +1,16 @@
+#logo, .logo{
+    width: 160px;
+}
+.flex{
+    display: flex;
+}
+.font{
+    font-family: "Rick";
+    color: rgb(188, 255, 92);
+}
+@font-face {
+    font-family: "Rick";
+    src: url("../font/Rick.ttf");
+}
+
+
