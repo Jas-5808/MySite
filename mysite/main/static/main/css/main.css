@@ -1,16 +1,56 @@
-#logo, .logo{
-    width: 160px;
-}
 .flex{
     display: flex;
+}
+body{
+    margin: 0;
+    background-image: url("../img/backgrount.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sizeHeader{
+    margin: 0 auto;
+    max-width: 940px;
+    background: rgb(40, 42, 53);
+}
+.content_size{
+    width: 860px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo, .logo{
+    width: 160px;
 }
 .font{
     font-family: "Rick";
     color: rgb(188, 255, 92);
 }
+.font:hover{
+    color: red;
+}
+ol{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+.search input{
+    border: none;
+}
 @font-face {
     font-family: "Rick";
     src: url("../font/Rick.ttf");
 }
-
-

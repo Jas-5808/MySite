@@ -10,19 +10,24 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <div class="flex">
-            <div class="logo">
-                <img src= "{% static 'main/img/logo.png' %}" alt="" id="logo">
+    <header class="sizeHeader">
+        <div class="flex, content" >
+            <div class="content_size">
+                <div class="logo"><img src= "{% static 'main/img/logo.png' %}" alt="" id="logo"></div>
+                <nav>
+                    <ol>
+                        <li><a href="/" class="font">Main</a></li>
+                        <li><a href="/characters" class="font">Characters</a></li>
+                        <li><a href="/marketPlace" class="font">Market</a></li>
+                        <li><a href="/about" class="font">about</a></li>
+                    </ol>
+                </nav>
             </div>
-            <nav>
-                <a href="/" class="font">Main</a>
-                <a href="/characters" class="font">Characters</a>
-                <a href="/marketPlace" class="font">Market</a>
-                <a href="/about" class="font">about</a>
-            </nav>
-        </div>
+            <div class="search">
+                <input type="text" name="search" placeholder="Поиск">
+            </div>
 
+        </div>
     </header>
   {% block content %}
 
