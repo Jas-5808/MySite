@@ -1,7 +1,22 @@
 {% extends 'main/layout.html' %}
-
+{% load static%}
 {% block title %}Персанажи{% endblock %}
 
 {% block content %}
-<h1>персонажи</h1>
+    <div class="characterBlock"></div>
+    <br>
+    <div class="description">
+        <div class="description_img">
+            <div class="status_characters"></div>
+            <img src="{% static 'main/img/defaultPhoto.png' %}" alt="" class="info_img">
+        </div>
+
+        <div class="info">
+            <span>Name: </span>
+            <p>Gender: </p>
+            <p>Species: </p>
+            <p>Status: </p>
+        </div>
+    </div>
 {% endblock %}
+

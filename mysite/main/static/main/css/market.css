@@ -1,0 +1,48 @@
+.card_bg{
+    background: none !important;
+    width: 65px;
+    height: 35px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.card_bg:hover{
+    border: rgb(188, 255, 92) solid;
+    background-color: rgb(246, 248, 123);
+    color: rgb(188, 255, 92);
+    box-sizing: border-box;
+}
+.bak{
+    width: 1200px;
+    min-height: 500px;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+.bak ol{
+    display: flex;
+}
+.bak a{
+    text-decoration: none;
+    font-family: "Rick";
+}
+.bak li:hover{
+    transform: scale(1.2);
+    transition: 1.2s;
+}
+.cotegor_text{
+    margin-left: 25px;
+}
+.fontM{
+    font-family: "Rick";
+    color: rgb(1, 247, 112);
+    font-size: 20PX;
+}
+
+@font-face {
+    font-family: "Rick";
+    src: url("../font/Rick.ttf");
+}
