@@ -12,16 +12,14 @@
     <link rel="stylesheet" href="{% static 'main/css/characters.css' %}">
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="{% static 'main/js/backMain.js' %}" defer></script>
-    <script src="{% static 'main/js/characters.js' %}" defer></script>
     <title>{% block title %}{% endblock %}</title>
     <style>
         body{
             height: 100vh;
         }
         video{
-
-         object-fit: cover;
-              height: 100vh;
+            object-fit: cover;
+            height: 100vh;
         }
     </style>
 </head>
@@ -39,9 +37,7 @@
                     </ol>
                 </nav>
             </div>
-            <div class="search">
-                <input type="text" name="search" placeholder="Поиск">
-            </div>
+
             {% block hider %}
 
             {% endblock %}

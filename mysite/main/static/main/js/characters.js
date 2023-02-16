@@ -8,7 +8,6 @@ const statusCharacters = document.querySelector(".status_characters");
 
 //url
 const characters = 'https://rickandmortyapi.com/api/character/?page=';
-const character = 'https://rickandmortyapi.com/api/character/'; //alternative
 let index = 1;
 let count = 0
 let statusChar;
@@ -18,7 +17,6 @@ let array=[];
 
 //API
 let APIPage = (index)=> fetch(characters + index).then((response) => {return response.json();});
-let APICharacter = (id) => fetch(character + id).then((response) => {return response.json();}); //alternative
 let addCharacters = (data) =>{
     //Add Dom
       for (let i = 0; i < 20; i++) {
@@ -36,14 +34,15 @@ APIPage(index).then(addCharacters);
 parents.addEventListener("click", event => {
     statusChar = event.target.id - 1;
     if(event.target.classList != 'characterBlock') {
-        description.style.transform = "rotateX(0deg)";
-        description.style.animation = "animations .6s linear alternate";
-        setTimeout(description.style.animation = "", 1000);
-        descriptionImg.setAttribute("src", `${event.target.getAttribute("src")}`);
-        info.children[0].innerText = `Name: ${array[event.target.id - 1].name}`;
-        info.children[1].innerText = `Gender: ${array[event.target.id - 1].gender}`;
-        info.children[2].innerText = `Species: ${array[event.target.id - 1].species}`;
-        info.children[3].innerText = `Status: ${array[event.target.id - 1].status}`;
+        description.style.transform = "";
+        setTimeout(()=>{
+            descriptionImg.setAttribute("src", `${event.target.getAttribute("src")}`);
+            info.children[0].innerText = `Name: ${array[event.target.id - 1].name}`;
+            info.children[1].innerText = `Gender: ${array[event.target.id - 1].gender}`;
+            info.children[2].innerText = `Species: ${array[event.target.id - 1].species}`;
+            info.children[3].innerText = `Status: ${array[event.target.id - 1].status}`;
+            description.style.transform = "rotateX(0deg)";
+        },200)
     }
 });
 
@@ -59,6 +58,6 @@ descriptionDiv.addEventListener("mouseleave", event =>{document.querySelector(".
 parents.addEventListener("wheel", event => {
     event.currentTarget.scrollLeft += event.deltaY;
     let max = event.currentTarget.scrollWidth - event.currentTarget.clientWidth;
-    if(--max <= event.currentTarget.scrollLeft){APIPage(++index).then(addCharacters);}
+    if(--max <= event.currentTarget.scrollLeft) APIPage(++index).then(addCharacters);
 });
 
