@@ -335,44 +335,57 @@ function addImg(count) {
 
 
 ///////////// click style Button
-let buttStyle = (button, buttId) => {
-    button.addEventListener('click', event =>{
-        let border;
-        if(localStorage.getItem(buttId)!= null){
-            border = localStorage.getItem(buttId)
-            document.getElementById(border).style.borderBottom = "none"
-        }
-        border = event.target.id;
-        localStorage.setItem(buttId, border)
-        event.target.style.borderBottom ='1px solid greenyellow';
+let saveStatus;
+let count = 0;
+let flag = false;
+let buttStyle = (buttonID,type) => {
+
+
         //////////////////////////
-        let count = 0;
-        let countDiv = 0;
-        let flag = true;
-        for (let i = 0; i < data[i + 0].type.length; i++) {
-           if (border == i + 6){
-               for (let j = 0; j < data.length; j++) {
-                   for (let k = 0; k < data[j].type[i].link.length; k++) {
-                       countDiv += 1;
-                       content.children[count++].setAttribute('src', data[j].type[i].link[k].url);
-                       content.insertAdjacentElement("beforeend", document.createElement('img'))
-                   }
-               }
-               count = 0;
-           }
+        // for (let i = 0; i < data[i + 0].type.length; i++) {
+        //    if (border == i + 6){
+        //        for (let j = 0; j < data.length; j++) {
+        //            for (let k = 0; k < data[j].type[i].link.length; k++) {
+        //                content.children[count++].setAttribute('src', data[j].type[i].link[k].url);
+        //                content.insertAdjacentElement("beforeend", document.createElement('img'))
+        //            }
+        //        }
+        //        count = 0;
+        //    }
+        // }
+///////////////////////////////////
+        for (let i = 1; i <= data.length; i++) {
+            if(border == i){
+                saveStatus = border - 1;
+            }
+        }
+        for (let i = 0; i < data[saveStatus].type.length; i++) {
+            if(border == i + 6){
+                if (!flag) addImg(data[saveStatus].type[border - 6].link.length)
+                for (let j = 0; j < data[saveStatus].type[border - 6].link.length; j++) {
+                     content.children[count++].setAttribute('src', data[saveStatus].type[border - 6].link[j].url);
+                     // content.insertAdjacentElement("beforeend", document.createElement('img'))
+                }
+                flag = true;
+                count = 0;
+            }
         }
 
-    })
 }
-addImg(data.length)
-over.forEach(button =>{
-    let overId = "over";
-    buttStyle(button, overId)
-})
-under.forEach(button =>{
-    let underId = "under";
-    buttStyle(button, underId)
-})
+function filtr(e){
+   let type =  e.target.getAttribute("type")
+        if( type !=null){
+            let buttonIdOld= localStorage.getItem(type)
+            console.log(type , buttonIdOld)
+            if(buttonIdOld!="" )
+               document.getElementById(buttonIdOld).style.borderBottom = "none";
+            localStorage.setItem(type, e.target.id)
+            e.target.style.borderBottom ='1px solid greenyellow';
+    }
+}
+document.querySelector(".Under").addEventListener("click",filtr)
+document.querySelector(".Over").addEventListener("click",filtr)
+
 ///// content close
 // blackBlock.addEventListener("click", () =>{ //работает но надо исправить багги
 //     blackBlock.style.display = "none";
