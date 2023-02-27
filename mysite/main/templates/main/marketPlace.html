@@ -1,21 +1,48 @@
 {% extends 'main/layout.html' %}
+{% load static%}
 {% block title %}Каталог{% endblock %}
-
-{% block hider %}
-    <button class="font card_bg" >Card</button>
-{% endblock %}
 {% block content %}
+
+ <script src="{% static 'main/js/market.js' %}" defer></script>
     <main>
-            <div class="bak">
-                <div>
-                    <h1 class="cotegor_text font">categories</h1>
-                    <ol>
-                        <li><a href="" class="fontM">t-shirts</a></li>
-                        <li><a href="" class="fontM">sweatshirts</a></li>
-                        <li><a href="" class="fontM">Wrap</a></li>
-                        <li><a href="" class="fontM">backpacks</a></li>
-                    </ol>
+        <div class="bak">
+            <div class="l"></div>
+            <div class="mid">
+                <menu class="menu">
+                    <div class="overButt" id="6">акксесуары</div>
+                    <div class="overButt" id="7">футболки</div>
+                    <div class="overButt" id="8">худи</div>
+                    <div class="overButt" id="9">толстовки</div>
+                </menu>
+                <div class="content_market"></div>
+                <menu class="menu">
+                    <div class="underButt" id="1">Rick</div>
+                    <div class="underButt" id="2">Morty</div>
+                    <div class="underButt" id="3">Bet</div>
+                    <div class="underButt" id="4">summer</div>
+                    <div class="underButt" id="5">jerry</div>
+                </menu>
+            </div>
+            <div class="r">
+                <button class="but_right"></button>
+                <button class="but_Mid"></button>
+                <button class="but_left"></button>
+            </div>
+        </div>
+        <div class="blackBlock">
+            <div class="preview">
+                <img src="" alt="">
+                <div class="preview_info">
+                    <h4>name</h4>
+                    <h4>color</h4>
+                    <h4>size</h4>
+                    <h4>cell</h4>
+                    <button>Add</button>
+                </div>
+                <div style="width: 13px; position: relative; bottom: 10px" >
+                    <div class="close"></div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 {% endblock %}

@@ -19,6 +19,7 @@ let array=[];
 let APIPage = (index)=> fetch(characters + index).then((response) => {return response.json();});
 let addCharacters = (data) =>{
     //Add Dom
+    console.log(data)
       for (let i = 0; i < 20; i++) {
           parents.insertAdjacentElement("beforeend", document.createElement('img'));
           parents.children[count + i].classList.add('characterImg');
@@ -60,4 +61,11 @@ parents.addEventListener("wheel", event => {
     let max = event.currentTarget.scrollWidth - event.currentTarget.clientWidth;
     if(--max <= event.currentTarget.scrollLeft) APIPage(++index).then(addCharacters);
 });
+
+
+//sw in backMain.js
+sw.addEventListener("click", (event)=>{
+    parents.style.animation ="animatsionOposity 1s linear forwards";
+    description.style.animation ="animatsionOposity 1s linear forwards";
+})
 
