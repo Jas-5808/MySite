@@ -4,7 +4,6 @@ function darkAndWhite(event) {
     let intervalRewind;
     if (event.target.checked == false){
         video.pause();
-
         intervalRewind = setInterval( ()=> {
             if (video.currentTime == 0) clearInterval(intervalRewind);
             else video.currentTime += -.1;

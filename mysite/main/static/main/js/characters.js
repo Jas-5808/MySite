@@ -62,7 +62,6 @@ parents.addEventListener("wheel", event => {
     if(--max <= event.currentTarget.scrollLeft) APIPage(++index).then(addCharacters);
 });
 
-
 //sw in backMain.js
 sw.addEventListener("click", (event)=>{
     parents.style.animation ="animatsionOposity 1s linear forwards";

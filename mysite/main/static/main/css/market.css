@@ -134,6 +134,9 @@
     background-color: black;
     cursor: pointer;
 }
+.border{
+    border-bottom: 1px solid greenyellow;
+}
 @font-face {
     font-family: "Rick";
     src: url("../font/Rick.ttf");

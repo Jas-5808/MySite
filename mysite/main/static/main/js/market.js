@@ -4,7 +4,17 @@ const preview = document.querySelector('.preview');
 const blackBlock = document.querySelector(".blackBlock");
 const under = document.querySelectorAll(".underButt")
  ////////////////////////использую переменные вместо базы данных
-
+// [
+//     {id_prod,name,url,type,pers,}
+//     {id_prod,name,url,type,pers,}
+//     {id_prod,name,url,type,pers,}
+//     {id_prod,name,url,type,pers,}
+//     {id_prod,name,url,type,pers,}
+//     {id_prod,name,url,type,pers,}
+//     {id_prod,name,url,type,pers,}
+//     {id_prod,name,url,type,pers,}
+//     {id_prod,name,url,type,pers,}
+//     ]
 let data = [
     {
         id: "1",
@@ -322,87 +332,56 @@ let data = [
         ]
     },
 ]
-
+console.log(data)
  //////////////add content
-function addImg(count) {
-    let defaultImg = "https://www.nbmchealth.com/wp-content/uploads/2018/04/default-placeholder-300x300.png";
+let defaultImg = "https://www.nbmchealth.com/wp-content/uploads/2018/04/default-placeholder-300x300.png";
+function addImg(count, url) {
+
     for (let i = 0; i < count; i++) {
         content.insertAdjacentElement("beforeend", document.createElement('img'))
-        content.children[i].setAttribute('src', defaultImg);
-    }
-    console.log(data)
-}
+        content.children[i].setAttribute('src', url);
 
-
-///////////// click style Button
-let saveStatus;
-let count = 0;
-let flag = false;
-let buttStyle = (buttonID,type) => {
-
-
-        //////////////////////////
-        // for (let i = 0; i < data[i + 0].type.length; i++) {
-        //    if (border == i + 6){
-        //        for (let j = 0; j < data.length; j++) {
-        //            for (let k = 0; k < data[j].type[i].link.length; k++) {
-        //                content.children[count++].setAttribute('src', data[j].type[i].link[k].url);
-        //                content.insertAdjacentElement("beforeend", document.createElement('img'))
-        //            }
-        //        }
-        //        count = 0;
-        //    }
-        // }
-///////////////////////////////////
-        for (let i = 1; i <= data.length; i++) {
-            if(border == i){
-                saveStatus = border - 1;
-            }
-        }
-        for (let i = 0; i < data[saveStatus].type.length; i++) {
-            if(border == i + 6){
-                if (!flag) addImg(data[saveStatus].type[border - 6].link.length)
-                for (let j = 0; j < data[saveStatus].type[border - 6].link.length; j++) {
-                     content.children[count++].setAttribute('src', data[saveStatus].type[border - 6].link[j].url);
-                     // content.insertAdjacentElement("beforeend", document.createElement('img'))
-                }
-                flag = true;
-                count = 0;
-            }
-        }
-
-}
-function filtr(e){
-   let type =  e.target.getAttribute("type")
-        if( type !=null){
-            let buttonIdOld= localStorage.getItem(type)
-            console.log(type , buttonIdOld)
-            if(buttonIdOld!="" )
-               document.getElementById(buttonIdOld).style.borderBottom = "none";
-            localStorage.setItem(type, e.target.id)
-            e.target.style.borderBottom ='1px solid greenyellow';
     }
 }
-document.querySelector(".Under").addEventListener("click",filtr)
-document.querySelector(".Over").addEventListener("click",filtr)
+addImg(3, defaultImg)
+
+function borderGreen(e){
+    let type =  e.target.getAttribute("type")
+    if( type != null){
+        if(localStorage.getItem(type)!= null)
+            document.getElementById(localStorage.getItem(type)).style.borderBottom = "none";
+        localStorage.setItem(type, e.target.id);
+        e.target.style.borderBottom ='1px solid greenyellow';
+    }
+}
+let index;
+function addContent(e){
+    let type =  e.target.getAttribute("type") + "Content";
+    if( type != null){
+        localStorage.setItem(type, e.target.id)
+        for (let i = 0; i < data[index - 1].type[e.target.id - 6].link.length; i++) {
+            content.children[i].setAttribute('src', data[index - 1].type[e.target.id - 6].link[i].url);
+        }
+        index = localStorage.getItem(type);
+    }
+}
+document.querySelector(".Under").addEventListener("click", borderGreen)
+document.querySelector(".Under").addEventListener("click", addContent)
+document.querySelector(".Over").addEventListener("click", addContent)
+document.querySelector(".Over").addEventListener("click", borderGreen)
+document.querySelector(".close").addEventListener("click", ()=>{
+    blackBlock.style.display = "none";
+})
+
+
+/////////////scroll
+content.addEventListener("wheel", event => {
+    event.currentTarget.scrollLeft += event.deltaY;
+});
+
 
 ///// content close
 // blackBlock.addEventListener("click", () =>{ //работает но надо исправить багги
 //     blackBlock.style.display = "none";
 // })
-document.querySelector(".close").addEventListener("click", ()=>{
-    blackBlock.style.display = "none";
-})
-/////////////scroll
-content.addEventListener("wheel", event => {
-    event.currentTarget.scrollLeft += event.deltaY;
-});
-  //////////// content info
-const img = document.querySelectorAll('.content_market img');
-img.forEach( img =>{
-    img.addEventListener('click', event =>{
-        blackBlock.style.display = "flex";
-        preview.children[0].setAttribute("src", `${event.target.getAttribute("src")}`)
-    })
-})
 
