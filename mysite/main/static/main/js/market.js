@@ -93,7 +93,6 @@ function borderGreen(e){
 let oldStatus;
 function addContent(e){
     let type = e.target.getAttribute("type")+ "Status";
-    console.log(type)
     if (type != "nullStatus") {
         content.innerHTML = " ";
         let arr2 = data.filter(element => {
